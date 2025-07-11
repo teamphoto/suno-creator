@@ -27,10 +27,15 @@ const MOODS = [
 ];
 
 const INSTRUMENTS = [
-  { label: '기타', value: 'guitar' },
+  { label: '클래식 기타', value: 'classical_guitar' },
+  { label: '포크 기타', value: 'folk_guitar' },
+  { label: '일렉트릭 기타', value: 'electric_guitar' },
+  { label: '레스폴 기타', value: 'les_paul_guitar' },
+  { label: '드럼', value: 'drums' }, // 기존 드럼
+  { label: '투베이스 드럼', value: 'double_bass_drum' },
+  { label: '탐탐', value: 'tom_tom' },
   { label: '피아노', value: 'piano' },
   { label: '신스', value: 'synth' },
-  { label: '드럼', value: 'drums' },
   { label: '베이스', value: 'bass' },
   { label: '스트링', value: 'strings' },
   { label: '브라스', value: 'brass' },
@@ -103,7 +108,7 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
   const [mood, setMood] = useState<string>('bright');
   const [genre, setGenre] = useState<string>(''); // GenreSelector 연동
   const [vocal, setVocal] = useState<string>('male vocal'); // vocals.json에 맞춰 변경
-  const [instruments, setInstruments] = useState<string[]>(['guitar', 'drums', 'synth']);
+  const [instruments, setInstruments] = useState<string[]>(['classical_guitar', 'drums', 'synth']);
   const [copiedPrompt, setCopiedPrompt] = useState(false);
 
   function toggleSingleSelection(
@@ -123,17 +128,7 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
     );
   }
 
-  const copyPrompt = async () => {
-    try {
-      await navigator.clipboard.writeText(prompt);
-      setCopiedPrompt(true);
-      setTimeout(() => setCopiedPrompt(false), 1200);
-    } catch (e) {
-      console.error('복사 실패:', e);
-      alert('복사 기능이 지원되지 않는 환경입니다. 직접 복사해주세요.');
-    }
-  };
-
+  // prompt는 항상 최신 상태의 값을 복사함
   const prompt = (() => {
     let promptStr = 'A';
     if (mood) promptStr += ` ${mood}`;
@@ -152,9 +147,20 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
     return promptStr.replace('A  song', 'A song');
   })();
 
+  const copyPrompt = async () => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopiedPrompt(true);
+      setTimeout(() => setCopiedPrompt(false), 1200);
+    } catch (e) {
+      console.error('복사 실패:', e);
+      alert('복사 기능이 지원되지 않는 환경입니다. 직접 복사해주세요.');
+    }
+  };
+
   useEffect(() => {
     if (onGeneratePrompt) onGeneratePrompt(prompt);
-  }, [prompt]);
+  }, [prompt, onGeneratePrompt]);
 
   return (
     <div className="bg-[#181e2a] p-6 rounded-xl max-w-xl mx-auto mt-4 shadow-lg text-white">
