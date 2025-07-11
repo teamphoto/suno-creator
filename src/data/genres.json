@@ -1,0 +1,102 @@
+[
+    {
+      "group": "팝",
+      "value": "pop",
+      "genres": [
+        { "label": "댄스팝", "value": "dance_pop" },
+        { "label": "일렉트로팝", "value": "electropop" },
+        { "label": "신스팝", "value": "synth_pop" },
+        { "label": "K팝", "value": "kpop" },
+        { "label": "팝발라드", "value": "pop_ballad" }
+      ]
+    },
+    {
+      "group": "록",
+      "value": "rock",
+      "genres": [
+        { "label": "얼터너티브 록", "value": "alternative_rock" },
+        { "label": "하드록", "value": "hard_rock" },
+        { "label": "클래식 록", "value": "classic_rock" },
+        { "label": "펑크 록", "value": "punk_rock" },
+        { "label": "인디 록", "value": "indie_rock" }
+      ]
+    },
+    {
+      "group": "힙합",
+      "value": "hiphop",
+      "genres": [
+        { "label": "올드스쿨 힙합", "value": "oldschool_hiphop" },
+        { "label": "트랩", "value": "trap" },
+        { "label": "붐뱁", "value": "boombap" },
+        { "label": "클라우드 랩", "value": "cloud_rap" }
+      ]
+    },
+    {
+      "group": "재즈",
+      "value": "jazz",
+      "genres": [
+        { "label": "스윙", "value": "swing" },
+        { "label": "보사노바", "value": "bossa_nova" },
+        { "label": "퓨전재즈", "value": "fusion_jazz" },
+        { "label": "스무스 재즈", "value": "smooth_jazz" }
+      ]
+    },
+    {
+      "group": "R&B",
+      "value": "rnb",
+      "genres": [
+        { "label": "컨템포러리 R&B", "value": "contemporary_rnb" },
+        { "label": "네오소울", "value": "neo_soul" }
+      ]
+    },
+    {
+      "group": "일렉트로닉",
+      "value": "electronic",
+      "genres": [
+        { "label": "EDM", "value": "edm" },
+        { "label": "하우스", "value": "house" },
+        { "label": "테크노", "value": "techno" },
+        { "label": "트랜스", "value": "trance" },
+        { "label": "드럼앤베이스", "value": "drum_and_bass" }
+      ]
+    },
+    {
+      "group": "포크/어쿠스틱",
+      "value": "folk",
+      "genres": [
+        { "label": "포크", "value": "folk" },
+        { "label": "어쿠스틱", "value": "acoustic" },
+        { "label": "컨트리", "value": "country" }
+      ]
+    },
+    {
+      "group": "메탈",
+      "value": "metal",
+      "genres": [
+        { "label": "헤비메탈", "value": "heavy_metal" },
+        { "label": "스래시메탈", "value": "thrash_metal" },
+        { "label": "데스메탈", "value": "death_metal" }
+      ]
+    },
+    {
+      "group": "클래식",
+      "value": "classical",
+      "genres": [
+        { "label": "오케스트라", "value": "orchestra" },
+        { "label": "현대음악", "value": "modern_classical" },
+        { "label": "바로크", "value": "baroque" }
+      ]
+    },
+    {
+      "group": "기타",
+      "value": "etc",
+      "genres": [
+        { "label": "레게", "value": "reggae" },
+        { "label": "블루스", "value": "blues" },
+        { "label": "월드뮤직", "value": "world_music" },
+        { "label": "뉴에이지", "value": "new_age" },
+        { "label": "앰비언트", "value": "ambient" }
+      ]
+    }
+  ]
+  
