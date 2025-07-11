@@ -1,4 +1,3 @@
-// ✅ 1. recommendTags API - /api/recommendTags/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
@@ -6,6 +5,7 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export async function POST(req: NextRequest) {
   try {
+    // 클라이언트에서 보낸 JSON 바디에서 'lyrics' 키를 받아옵니다.
     const { lyrics } = await req.json();
 
     const systemPrompt = `
@@ -20,11 +20,11 @@ Respond in JSON format like this:
 }`.trim();
 
     const completion = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo', // ⬅️ 모델을 3.5로 변경
+      model: 'gpt-3.5-turbo',
       temperature: 0.7,
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user', content: lyrics },
+        { role: 'user', content: lyrics },  // 여기서 'lyrics' 사용
       ],
     });
 
@@ -42,44 +42,3 @@ Respond in JSON format like this:
     return NextResponse.json({ tags: {} }, { status: 500 });
   }
 }
-
-
-// ✅ 2. formatLyrics 함수 (PromptBuilder.tsx 안에 포함)
-const formatLyrics = (raw: string, tagMap: Record<string, string[]>) =>
-  raw
-    .trim()
-    .split(/\r?\n/)
-    .map((line) => {
-      const m = line.match(/^\[(.+?)\]/);
-      if (!m) return line;
-      const sec = m[1].trim();
-      const tags = tagMap[sec] || tagMap[sec.split(' ')[0]] || [];
-      return `[${sec}]${tags.length ? ' ' + tags.join(', ') : ''}`;
-    })
-    .join('\n');
-
-
-// ✅ 3. PromptBuilder.tsx - 적용 코드 일부
-
-const handleGenerate = async () => {
-  // ...가사 생성 이후
-
-  let tagJson: Record<string, string[]> = {};
-  try {
-    const tagRes = await fetch('/api/recommendTags', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ lyrics: lyricTxt }),
-    });
-    const json = await tagRes.json();
-    tagJson = json.tags || {};
-    if (!Object.keys(tagJson).length) {
-      console.warn('⚠️ No tags generated. Falling back to no tags.');
-    }
-  } catch (e) {
-    console.error('❌ Failed to fetch tags:', e);
-  }
-
-  setTags(tagJson);
-  setFormattedLyrics(formatLyrics(lyricTxt, tagJson));
-};
