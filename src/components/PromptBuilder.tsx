@@ -31,7 +31,7 @@ const INSTRUMENTS = [
   { label: '포크 기타', value: 'folk_guitar' },
   { label: '일렉트릭 기타', value: 'electric_guitar' },
   { label: '레스폴 기타', value: 'les_paul_guitar' },
-  { label: '드럼', value: 'drums' }, // 기존 드럼
+  { label: '드럼', value: 'drums' },
   { label: '투베이스 드럼', value: 'double_bass_drum' },
   { label: '탐탐', value: 'tom_tom' },
   { label: '피아노', value: 'piano' },
@@ -103,6 +103,13 @@ function joinArray(arr: string[]): string {
   return arr.slice(0, -1).join(', ') + ' and ' + arr[arr.length - 1];
 }
 
+// --- 언더바→공백+단어대문자 변환 함수 ---
+function formatPromptValue(str: string) {
+  return str
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
 export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) {
   const [event, setEvent] = useState<string>('birthday');
   const [mood, setMood] = useState<string>('bright');
@@ -131,17 +138,17 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
   // prompt는 항상 최신 상태의 값을 복사함
   const prompt = (() => {
     let promptStr = 'A';
-    if (mood) promptStr += ` ${mood}`;
-    if (genre) promptStr += ` ${genre}`;
+    if (mood) promptStr += ` ${formatPromptValue(mood)}`;
+    if (genre) promptStr += ` ${formatPromptValue(genre)}`;
     promptStr += ' song';
-    if (event) promptStr += ` for a ${event}`;
+    if (event) promptStr += ` for a ${formatPromptValue(event)}`;
     if (vocal && vocal !== 'instrumental') {
-      promptStr += `, performed as a ${vocal}`;
+      promptStr += `, performed as a ${formatPromptValue(vocal)}`;
     } else if (vocal === 'instrumental') {
       promptStr += ' (instrumental, no vocals)';
     }
     if (instruments.length > 0) {
-      promptStr += `, featuring ${joinArray(instruments)}`;
+      promptStr += `, featuring ${joinArray(instruments.map(formatPromptValue))}`;
     }
     promptStr += '.';
     return promptStr.replace('A  song', 'A song');
