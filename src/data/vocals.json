@@ -1,79 +1,101 @@
 [
-    {
-      "group": "남성 보컬",
-      "value": "male",
-      "styles": [
-        { "label": "일반 남성 보컬", "value": "male_vocal" },
-        { "label": "부드러운 남성 보컬", "value": "soft_male_vocal" },
-        { "label": "그로울링 남성 보컬", "value": "growl_male_vocal" },
-        { "label": "하모니 남성 보컬", "value": "harmony_male_vocal" },
-        { "label": "속삭이는 남성 보컬", "value": "whisper_male_vocal" },
-        { "label": "오페라 남성 보컬", "value": "opera_male_vocal" }
-      ]
-    },
-    {
-      "group": "여성 보컬",
-      "value": "female",
-      "styles": [
-        { "label": "일반 여성 보컬", "value": "female_vocal" },
-        { "label": "부드러운 여성 보컬", "value": "soft_female_vocal" },
-        { "label": "하모니 여성 보컬", "value": "harmony_female_vocal" },
-        { "label": "속삭이는 여성 보컬", "value": "whisper_female_vocal" },
-        { "label": "오페라 여성 보컬", "value": "opera_female_vocal" }
-      ]
-    },
-    {
-      "group": "어린이 보컬",
-      "value": "children",
-      "styles": [
-        { "label": "일반 어린이 보컬", "value": "children_vocal" },
-        { "label": "합창 어린이 보컬", "value": "children_choir_vocal" }
-      ]
-    },
-    {
-      "group": "듀엣",
-      "value": "duet",
-      "styles": [
-        { "label": "남성 듀엣", "value": "male_duet_vocal" },
-        { "label": "여성 듀엣", "value": "female_duet_vocal" },
-        { "label": "혼성 듀엣", "value": "mixed_duet_vocal" }
-      ]
-    },
-    {
-      "group": "합창",
-      "value": "choir",
-      "styles": [
-        { "label": "남성 합창", "value": "male_choir_vocal" },
-        { "label": "여성 합창", "value": "female_choir_vocal" },
-        { "label": "혼성 합창", "value": "mixed_choir_vocal" },
-        { "label": "어린이 합창", "value": "children_choir_vocal" }
-      ]
-    },
-    {
-      "group": "랩",
-      "value": "rap",
-      "styles": [
-        { "label": "일반 랩", "value": "rap_vocal" },
-        { "label": "멜로딕 랩", "value": "melodic_rap_vocal" },
-        { "label": "트랩 랩", "value": "trap_rap_vocal" }
-      ]
-    },
-    {
-      "group": "로봇 보컬",
-      "value": "robotic",
-      "styles": [
-        { "label": "로봇 보컬(일반)", "value": "robotic_vocal" },
-        { "label": "오토튠 보컬", "value": "autotune_vocal" },
-        { "label": "보코더 보컬", "value": "vocoder_vocal" },
-        { "label": "전자음 보컬", "value": "electronic_vocal" }
-      ]
-    },
-    {
-      "group": "연주곡",
-      "value": "instrumental",
-      "styles": [
-        { "label": "보컬 없음(인스트루멘탈)", "value": "instrumental" }
-      ]
-    }
-  ]
-  
+  {
+    "group": "남성 보컬",
+    "value": "male",
+    "styles": [
+      { "label": "일반 남성 보컬", "value": "male vocal" },
+      { "label": "부드러운 남성 보컬", "value": "soft male vocal" },
+      { "label": "감성적인 남성 보컬", "value": "emotional male vocal" },
+      { "label": "호소력 있는 남성 보컬", "value": "powerful male vocal" },
+      { "label": "속삭이는 남성 보컬", "value": "whisper male vocal" },
+      { "label": "샤우팅 남성 보컬", "value": "shouting male vocal" }
+    ]
+  },
+  {
+    "group": "여성 보컬",
+    "value": "female",
+    "styles": [
+      { "label": "일반 여성 보컬", "value": "female vocal" },
+      { "label": "부드러운 여성 보컬", "value": "soft female vocal" },
+      { "label": "감성적인 여성 보컬", "value": "emotional female vocal" },
+      { "label": "호소력 있는 여성 보컬", "value": "powerful female vocal" },
+      { "label": "속삭이는 여성 보컬", "value": "whisper female vocal" },
+      { "label": "샤우팅 여성 보컬", "value": "shouting female vocal" }
+    ]
+  },
+  {
+    "group": "중성/합성",
+    "value": "neutral",
+    "styles": [
+      { "label": "중성 보컬", "value": "neutral vocal" },
+      { "label": "합성 보컬", "value": "synthesized vocal" }
+    ]
+  },
+  {
+    "group": "어린이",
+    "value": "child",
+    "styles": [
+      { "label": "어린이 보컬", "value": "child vocal" },
+      { "label": "남아 보컬", "value": "boy vocal" },
+      { "label": "여아 보컬", "value": "girl vocal" },
+      { "label": "어린이 합창", "value": "children choir" }
+    ]
+  },
+  {
+    "group": "합창/오페라",
+    "value": "choir_opera",
+    "styles": [
+      { "label": "합창", "value": "choir" },
+      { "label": "남성 합창", "value": "male choir" },
+      { "label": "여성 합창", "value": "female choir" },
+      { "label": "혼성 합창", "value": "mixed choir" },
+      { "label": "남성 오페라", "value": "male opera" },
+      { "label": "여성 오페라", "value": "female opera" },
+      { "label": "혼성 오페라", "value": "mixed opera" }
+    ]
+  },
+  {
+    "group": "듀엣",
+    "value": "duet",
+    "styles": [
+      { "label": "남녀 듀엣", "value": "male female duet" },
+      { "label": "여성 듀엣", "value": "female duet" },
+      { "label": "남성 듀엣", "value": "male duet" }
+    ]
+  },
+  {
+    "group": "랩",
+    "value": "rap",
+    "styles": [
+      { "label": "랩", "value": "rap vocal" },
+      { "label": "여성 랩", "value": "female rap" },
+      { "label": "남성 랩", "value": "male rap" },
+      { "label": "속사포 랩", "value": "fast rap" },
+      { "label": "느린 랩", "value": "slow rap" },
+      { "label": "감성 랩", "value": "emotional rap" },
+      { "label": "트랩 랩", "value": "trap rap" },
+      { "label": "락 랩", "value": "rock rap" }
+    ]
+  },
+  {
+    "group": "로봇/AI/특수",
+    "value": "robot_ai",
+    "styles": [
+      { "label": "로봇 보컬", "value": "robot vocal" },
+      { "label": "보코더", "value": "vocoder vocal" },
+      { "label": "AI 보컬", "value": "AI vocal" },
+      { "label": "스피치 보컬", "value": "speech vocal" },
+      { "label": "오토튠 보컬", "value": "autotune vocal" },
+      { "label": "토크박스", "value": "talkbox vocal" }
+    ]
+  },
+  {
+    "group": "연주곡/기타",
+    "value": "etc",
+    "styles": [
+      { "label": "연주곡(보컬 없음)", "value": "instrumental" },
+      { "label": "재즈 스캣", "value": "jazz scatting" },
+      { "label": "나레이션", "value": "narration" }
+    ]
+  }
+]

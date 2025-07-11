@@ -102,11 +102,10 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
   const [event, setEvent] = useState<string>('birthday');
   const [mood, setMood] = useState<string>('bright');
   const [genre, setGenre] = useState<string>(''); // GenreSelector 연동
-  const [vocal, setVocal] = useState<string>('male_vocal'); // VocalSelector 연동
+  const [vocal, setVocal] = useState<string>('male vocal'); // vocals.json에 맞춰 변경
   const [instruments, setInstruments] = useState<string[]>(['guitar', 'drums', 'synth']);
   const [copiedPrompt, setCopiedPrompt] = useState(false);
 
-  // 단일 선택 토글 함수 예시 (이벤트, 무드 등)
   function toggleSingleSelection(
     current: string,
     value: string,
@@ -116,7 +115,6 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
     else setter(value);
   }
 
-  // 악기 다중 선택 토글
   function handleInstrumentChange(value: string) {
     setInstruments(prev =>
       prev.includes(value)
@@ -125,10 +123,15 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
     );
   }
 
-  const copyPrompt = () => {
-    navigator.clipboard.writeText(prompt);
-    setCopiedPrompt(true);
-    setTimeout(() => setCopiedPrompt(false), 1200);
+  const copyPrompt = async () => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopiedPrompt(true);
+      setTimeout(() => setCopiedPrompt(false), 1200);
+    } catch (e) {
+      console.error('복사 실패:', e);
+      alert('복사 기능이 지원되지 않는 환경입니다. 직접 복사해주세요.');
+    }
   };
 
   const prompt = (() => {
