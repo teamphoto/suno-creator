@@ -106,9 +106,6 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
   const [instruments, setInstruments] = useState<string[]>(['guitar', 'drums', 'synth']);
   const [copiedPrompt, setCopiedPrompt] = useState(false);
 
-  // 새로 추가: 가사 텍스트 상태
-  const [lyricTxt, setLyricTxt] = useState<string>('');
-
   function handleInstrumentChange(value: string) {
     setInstruments(prev =>
       prev.includes(value)
@@ -117,14 +114,12 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
     );
   }
 
-  // 복사 버튼 함수
   const copyPrompt = () => {
     navigator.clipboard.writeText(prompt);
     setCopiedPrompt(true);
     setTimeout(() => setCopiedPrompt(false), 1200);
   };
 
-  // 프롬프트 생성
   const prompt = (() => {
     let promptStr = 'A';
     if (mood) promptStr += ` ${mood}`;
@@ -146,28 +141,6 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
   useEffect(() => {
     if (onGeneratePrompt) onGeneratePrompt(prompt);
   }, [prompt]);
-
-  // 새로 추가: 가사 입력용 텍스트박스와 handleGenerate 함수 (예시)
-  const handleGenerate = async () => {
-    // 예시: 가사 생성 또는 입력 후 lyricTxt에 값이 있어야 API 호출 가능
-    if (!lyricTxt.trim()) {
-      alert('가사를 입력해주세요.');
-      return;
-    }
-
-    try {
-      const res = await fetch('/api/recommendTags', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lyrics: lyricTxt }),
-      });
-      const data = await res.json();
-      console.log('추천 태그:', data.tags);
-      // 필요시 태그 상태 업데이트 등 작업
-    } catch (error) {
-      console.error('태그 추천 오류:', error);
-    }
-  };
 
   return (
     <div className="bg-[#181e2a] p-6 rounded-xl max-w-xl mx-auto mt-4 shadow-lg text-white">
@@ -250,26 +223,6 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
           ))}
         </div>
       </div>
-
-      {/* 새로 추가: 가사 입력 텍스트박스 */}
-      <div className="mb-3">
-        <label className="block mb-1 font-semibold text-white">가사 입력</label>
-        <textarea
-          value={lyricTxt}
-          onChange={e => setLyricTxt(e.target.value)}
-          rows={6}
-          className="w-full p-2 rounded-md bg-gray-800 text-white resize-none"
-          placeholder="가사를 입력하세요..."
-        />
-      </div>
-
-      {/* 태그 추천 API 호출 버튼 */}
-      <button
-        onClick={handleGenerate}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
-      >
-        태그 추천 받기
-      </button>
     </div>
   );
 }
