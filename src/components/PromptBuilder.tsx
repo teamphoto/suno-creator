@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import GenreSelector from './GenreSelector';
 import VocalSelector from './VocalSelector';
 
@@ -103,7 +103,7 @@ function joinArray(arr: string[]): string {
   return arr.slice(0, -1).join(', ') + ' and ' + arr[arr.length - 1];
 }
 
-// --- 언더바→공백+단어대문자 변환 함수 ---
+// 언더바→공백+단어대문자 변환
 function formatPromptValue(str: string) {
   return str
     .replace(/_/g, ' ')
@@ -135,12 +135,23 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
     );
   }
 
-  // prompt는 항상 최신 상태의 값을 복사함
-  const prompt = (() => {
+  // prompt useMemo로 항상 최신값 관리 + 앞부분 로직 분기
+  const prompt = useMemo(() => {
+    const moodText = mood ? formatPromptValue(mood) : '';
+    const genreText = genre ? formatPromptValue(genre) : '';
+
     let promptStr = 'A';
-    if (mood) promptStr += ` ${formatPromptValue(mood)}`;
-    if (genre) promptStr += ` ${formatPromptValue(genre)}`;
+
+    if (moodText && genreText) {
+      promptStr += ` ${moodText} ${genreText}`;
+    } else if (moodText) {
+      promptStr += ` ${moodText}`;
+    } else if (genreText) {
+      promptStr += ` ${genreText}`;
+    }
+
     promptStr += ' song';
+
     if (event) promptStr += ` for a ${formatPromptValue(event)}`;
     if (vocal && vocal !== 'instrumental') {
       promptStr += `, performed as a ${formatPromptValue(vocal)}`;
@@ -152,7 +163,7 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
     }
     promptStr += '.';
     return promptStr.replace('A  song', 'A song');
-  })();
+  }, [mood, genre, event, vocal, instruments]);
 
   const copyPrompt = async () => {
     try {
