@@ -106,6 +106,17 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
   const [instruments, setInstruments] = useState<string[]>(['guitar', 'drums', 'synth']);
   const [copiedPrompt, setCopiedPrompt] = useState(false);
 
+  // 단일 선택 토글 함수 예시 (이벤트, 무드 등)
+  function toggleSingleSelection(
+    current: string,
+    value: string,
+    setter: React.Dispatch<React.SetStateAction<string>>
+  ) {
+    if (current === value) setter(''); // 이미 선택된 버튼 다시 누르면 해제
+    else setter(value);
+  }
+
+  // 악기 다중 선택 토글
   function handleInstrumentChange(value: string) {
     setInstruments(prev =>
       prev.includes(value)
@@ -172,7 +183,7 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
               key={opt.value}
               category="event"
               selected={event === opt.value}
-              onClick={() => setEvent(opt.value)}
+              onClick={() => toggleSingleSelection(event, opt.value, setEvent)}
             >
               {opt.label}
             </CategoryButton>
@@ -190,7 +201,7 @@ export default function PromptBuilder({ onGeneratePrompt }: PromptBuilderProps) 
               key={opt.value}
               category="mood"
               selected={mood === opt.value}
-              onClick={() => setMood(opt.value)}
+              onClick={() => toggleSingleSelection(mood, opt.value, setMood)}
             >
               {opt.label}
             </CategoryButton>
